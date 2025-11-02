@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ditss Bio Link - Personal Link Hub</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --secondary: #7c3aed;
+            --accent: #06b6d4;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            --transition: all 0.3s ease;
+        }
+
+        [data-theme="light"] {
+            --dark: #f8fafc;
+            --light: #0f172a;
+            --glass-bg: rgba(15, 23, 42, 0.1);
+            --glass-border: rgba(15, 23, 42, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: var(--light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            transition: var(--transition);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 80%, rgba(79, 70, 229, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            z-index: 1;
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--glass-border);
+            box-shadow: 0 0 20px rgba(79, 70, 229, 0.5);
+            margin: 0 auto 20px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-img::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
+            z-index: -1;
+            animation: rotate 3s linear infinite;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(79, 70, 229, 0.8);
+        }
+
+        .name {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .bio {
+            font-size: 16px;
+            font-weight: 400;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .username {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 50px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            width: fit-content;
+            margin: 0 auto 30px;
+            transition: var(--transition);
+        }
+
+        .username:hover {
+            background: rgba(79, 70, 229, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .username span {
+            font-weight: 500;
+        }
+
+        .username i {
+            font-size: 18px;
+        }
+
+        /* Links Section */
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .link-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 24px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+            text-decoration: none;
+            color: var(--light);
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .link-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .link-card:hover::before {
+            left: 100%;
+        }
+
+        .link-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(79, 70, 229, 0.3);
+            border-color: rgba(79, 70, 229, 0.5);
+        }
+
+        .link-icon {
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+
+        .link-card:hover .link-icon {
+            transform: scale(1.1);
+            background: rgba(79, 70, 229, 0.2);
+        }
+
+        .link-text {
+            flex: 1;
+        }
+
+        .link-title {
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .link-desc {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .link-arrow {
+            font-size: 20px;
+            opacity: 0.7;
+            transition: var(--transition);
+        }
+
+        .link-card:hover .link-arrow {
+            opacity: 1;
+            transform: translateX(5px);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 14px;
+            opacity: 0.7;
+            border-top: 1px solid var(--glass-border);
+            width: 100%;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(30deg);
+            background: rgba(79, 70, 229, 0.2);
+        }
+
+        .theme-toggle i {
+            font-size: 24px;
+        }
+
+        /* Music Player */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            transition: var(--transition);
+        }
+
+        .music-player:hover {
+            transform: scale(1.1);
+            background: rgba(79, 70, 229, 0.2);
+        }
+
+        .music-player i {
+            font-size: 24px;
+        }
+
+        .music-player.playing i {
+            color: var(--accent);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+        .delay-6 { animation-delay: 0.6s; }
+
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+        }
+
+        .loading-logo {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: rotate 1s linear infinite;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container {
+                padding: 0 10px;
+            }
+            
+            .profile-img {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .name {
+                font-size: 24px;
+            }
+            
+            .link-card {
+                padding: 14px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-logo">Ditss Bio Link</div>
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Theme Toggle -->
+    <div class="theme-toggle" id="themeToggle">
+        <i class='bx bx-moon'></i>
+    </div>
+
+    <!-- Music Player -->
+    <div class="music-player" id="musicPlayer">
+        <i class='bx bx-play'></i>
+        <audio id="backgroundMusic" loop>
+            <source src="https://assets.mixkit.co/music/preview/mixkit-tech-house-vibes-130.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Profile Picture" class="profile-img">
+            <h1 class="name">Aditia Nugraha</h1>
+            <p class="bio">Developer & Owner Ditss Store</p>
+            <div class="username" id="username">
+                <span>@ditssdev</span>
+                <i class='bx bx-copy'></i>
+            </div>
+        </header>
+
+        <!-- Links Section -->
+        <section class="links">
+            <a href="https://wa.me/6281234567890" target="_blank" class="link-card fade-in">
+                <div class="link-icon" style="color: #25D366;">
+                    <i class='bx bxl-whatsapp'></i>
+                </div>
+                <div class="link-text">
+                    <div class="link-title">WhatsApp</div>
+                    <div class="link-desc">Hubungi saya via WhatsApp</div>
+                </div>
+                <div class="link-arrow">
+                    <i class='bx bx-chevron-right'></i>
+                </div>
+            </a>
+
+            <a href="https://instagram.com/ditssdev" target="_blank" class="link-card fade-in delay-1">
+                <div class="link-icon" style="color: #E4405F;">
+                    <i class='bx bxl-instagram'></i>
+                </div>
+                <div class="link-text">
+                    <div class="link-title">Instagram</div>
+                    <div class="link-desc">Follow untuk update terbaru</div>
+                </div>
+                <div class="link-arrow">
+                    <i class='bx bx-chevron-right'></i>
+                </div>
+            </a>
+
+            <a href="https://github.com/ditssdev" target="_blank" class="link-card fade-in delay-2">
+                <div class="link-icon" style="color: #ffffff;">
+                    <i class='bx bxl-github'></i>
+                </div>
+                <div class="link-text">
+                    <div class="link-title">GitHub</div>
+                    <div class="link-desc">Lihat proyek open source saya</div>
+                </div>
+                <div class="link-arrow">
+                    <i class='bx bx-chevron-right'></i>
+                </div>
+            </a>
+
+            <a href="https://tiktok.com/@ditssdev" target="_blank" class="link-card fade-in delay-3">
+                <div class="link-icon" style="color: #000000;">
+                    <i class='bx bxl-tiktok'></i>
+                </div>
+                <div class="link-text">
+                    <div class="link-title">TikTok</div>
+                    <div class="link-desc">Konten kreatif & edukatif</div>
+                </div>
+                <div class="link-arrow">
+                    <i class='bx bx-chevron-right'></i>
+                </div>
+            </a>
+
+            <a href="https://t.me/ditssdev" target="_blank" class="link-card fade-in delay-4">
+                <div class="link-icon" style="color: #0088cc;">
+                    <i class='bx bxl-telegram'></i>
+                </div>
+                <div class="link-text">
+                    <div class="link-title">Telegram</div>
+                    <div class="link-desc">Join channel & grup saya</div>
+                </div>
+                <div class="link-arrow">
+                    <i class='bx bx-chevron-right'></i>
+                </div>
+            </a>
+
+            <a href="https://ditssstore.com" target="_blank" class="link-card fade-in delay-5">
+                <div class="link-icon" style="color: #4f46e5;">
+                    <i class='bx bx-globe'></i>
+                </div>
+                <div class="link-text">
+                    <div class="link-title">Website Utama</div>
+                    <div class="link-desc">Kunjungi website resmi Ditss Store</div>
+                </div>
+                <div class="link-arrow">
+                    <i class='bx bx-chevron-right'></i>
+                </div>
+            </a>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer fade-in delay-6">
+            © 2025 Ditss Bio Link — Powered by Ditss
+        </footer>
+    </div>
+
+    <script>
+        // Loading Screen
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loadingScreen').style.opacity = '0';
+                setTimeout(function() {
+                    document.getElementById('loadingScreen').style.display = 'none';
+                }, 500);
+            }, 1500);
+        });
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        themeToggle.addEventListener('click', function() {
+            if (document.body.getAttribute('data-theme') === 'light') {
+                document.body.removeAttribute('data-theme');
+                themeIcon.className = 'bx bx-moon';
+            } else {
+                document.body.setAttribute('data-theme', 'light');
+                themeIcon.className = 'bx bx-sun';
+            }
+        });
+
+        // Music Player
+        const musicPlayer = document.getElementById('musicPlayer');
+        const musicIcon = musicPlayer.querySelector('i');
+        const backgroundMusic = document.getElementById('backgroundMusic');
+        let isPlaying = false;
+
+        musicPlayer.addEventListener('click', function() {
+            if (isPlaying) {
+                backgroundMusic.pause();
+                musicIcon.className = 'bx bx-play';
+                musicPlayer.classList.remove('playing');
+            } else {
+                backgroundMusic.play();
+                musicIcon.className = 'bx bx-pause';
+                musicPlayer.classList.add('playing');
+            }
+            isPlaying = !isPlaying;
+        });
+
+        // Copy Username
+        const username = document.getElementById('username');
+        
+        username.addEventListener('click', function() {
+            const textToCopy = '@ditssdev';
+            
+            // Create a temporary textarea element
+            const textarea = document.createElement('textarea');
+            textarea.value = textToCopy;
+            document.body.appendChild(textarea);
+            
+            // Select and copy the text
+            textarea.select();
+            document.execCommand('copy');
+            
+            // Remove the temporary element
+            document.body.removeChild(textarea);
+            
+            // Change icon to indicate success
+            const icon = username.querySelector('i');
+            icon.className = 'bx bx-check';
+            
+            // Revert back after 2 seconds
+            setTimeout(function() {
+                icon.className = 'bx bx-copy';
+            }, 2000);
+        });
+
+        // Fade-in animation on scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeInOnScroll = function() {
+            fadeElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.style.opacity = "1";
+                    element.style.transform = "translateY(0)";
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', fadeInOnScroll);
+        // Initial check
+        fadeInOnScroll();
+    </script>
+</body>
+</html>
