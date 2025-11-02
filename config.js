@@ -1,4 +1,11 @@
 module.exports = {
+  WhatsApp: "https://wa.me/message/GHVCD7UJLENNE1",
+  Instagram: "https://www.instagram.com/dits.v2?igsh=NmE3Mmt0MWRmc2Uz",
+  Github: "https://github.com/ditss-cloud",
+  Tiktok: "https://www.tiktok.com/@paadit?_r=1&_t=ZS-913nyPAXyo3",
+  Telegram: "https://t.me/paaditt",
+  cdnWebsite: "https://cdn.ditss.biz.id",
+  storeWebsite: "https://store.ditss.biz.id",
   siteName: "NefuSite",
   authorName: "NefuSoft",
   profilePicture: "https://cdn.nefyu.my.id/csy1.jpg",
