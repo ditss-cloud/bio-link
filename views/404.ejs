@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Tidak Ditemukan - 404</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(to bottom, #87CEEB, #1E90FF);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            animation: fadeIn 1.2s ease;
+        }
+        
+        .container {
+            text-align: center;
+            z-index: 10;
+            padding: 2rem;
+            max-width: 800px;
+        }
+        
+        h1 {
+            font-size: 8rem;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+        }
+        
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #FFD700;
+            color: #333;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin: 0 10px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            background: #FFEC8B;
+        }
+        
+        .beach-elements {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 30%;
+            background: #F4A460;
+            z-index: 1;
+        }
+        
+        .wave {
+            position: absolute;
+            bottom: 30%;
+            width: 100%;
+            height: 80px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="%231E90FF"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="%231E90FF"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%231E90FF"/></svg>');
+            background-size: 1200px 80px;
+            animation: wave 12s linear infinite;
+        }
+        
+        .palm-tree {
+            position: absolute;
+            bottom: 30%;
+            right: 10%;
+            font-size: 5rem;
+            z-index: 5;
+            animation: sway 8s ease-in-out infinite;
+        }
+        
+        .sun {
+            position: absolute;
+            top: 10%;
+            right: 15%;
+            width: 100px;
+            height: 100px;
+            background: #FFD700;
+            border-radius: 50%;
+            box-shadow: 0 0 40px #FFA500;
+            animation: pulse 4s ease-in-out infinite;
+            transition: transform 0.1s ease-out;
+        }
+        
+        .crab {
+            position: absolute;
+            bottom: 32%;
+            left: 15%;
+            font-size: 2rem;
+            z-index: 5;
+            animation: crawl 15s linear infinite;
+        }
+        
+        .sand-castle {
+            position: absolute;
+            bottom: 30%;
+            left: 25%;
+            font-size: 3rem;
+            z-index: 5;
+        }
+        
+        .search-box {
+            margin: 2rem 0;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .search-box input {
+            padding: 12px 20px;
+            width: 300px;
+            border: none;
+            border-radius: 50px 0 0 50px;
+            font-size: 1rem;
+            outline: none;
+        }
+        
+        .search-box button {
+            padding: 12px 25px;
+            background: #FF6347;
+            color: white;
+            border: none;
+            border-radius: 0 50px 50px 0;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+        
+        .search-box button:hover {
+            background: #FF4500;
+        }
+        
+        footer {
+            position: absolute;
+            bottom: 10px;
+            opacity: 0.7;
+            font-size: 0.9rem;
+            z-index: 10;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes wave {
+            0% { background-position-x: 0; }
+            100% { background-position-x: 1200px; }
+        }
+        
+        @keyframes sway {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        
+        @keyframes crawl {
+            0% { transform: translateX(-100px) rotateY(0); }
+            49% { transform: translateX(calc(100vw - 200px)) rotateY(0); }
+            50% { transform: translateX(calc(100vw - 200px)) rotateY(180deg); }
+            99% { transform: translateX(-100px) rotateY(180deg); }
+            100% { transform: translateX(-100px) rotateY(0); }
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 6rem; }
+            h2 { font-size: 2rem; }
+            .btn { display: block; margin: 10px auto; width: 200px; }
+            .palm-tree, .sun, .crab, .sand-castle { display: none; }
+            .search-box input { width: 250px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="sun"></div>
+    <div class="palm-tree">🌴</div>
+    <div class="crab">🦀</div>
+    <div class="sand-castle">🏰</div>
+    
+    <div class="container">
+        <h1>404</h1>
+        <h2>Halaman Tidak Ditemukan</h2>
+        <p>Sepertinya Anda tersesat di pantai! Halaman yang Anda cari tidak dapat ditemukan. Mungkin tersapu ombak atau terkubur pasir.</p>
+        
+        <div class="search-box">
+            <input type="text" placeholder="Cari sesuatu..." id="searchInput">
+            <button id="searchButton">Cari</button>
+        </div>
+        
+        <div class="actions">
+            <a href="/" class="btn">🏠 Kembali ke Beranda</a>
+            <a href="https://api.ditss.biz.id" class="btn">⚙️ Website API</a>
+            <a href="https://cdn.ditss.biz.id" class="btn">⚡ Website CDN</a>
+        </div>
+    </div>
+    
+    <div class="wave"></div>
+    <div class="beach-elements"></div>
+    
+    <footer>
+        © 2025 Ditss Network • Powered By Ditss
+    </footer>
+    
+    <script>
+        // Animasi tambahan untuk interaktivitas
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(button => {
+                button.addEventListener('mouseover', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                button.addEventListener('mouseout', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // Efek klik pada tombol pencarian
+            const searchButton = document.getElementById('searchButton');
+            searchButton.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 150);
+                
+                // Fungsi pencarian
+                const query = document.getElementById('searchInput').value.trim();
+                if (query) {
+                    window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}+site:ditss.biz.id`;
+                }
+            });
+            
+            // Pencarian dengan tombol Enter
+            document.getElementById('searchInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    const query = this.value.trim();
+                    if (query) {
+                        window.location.href = `https://www.google.com/search?q=${encodeURIComponent(query)}+site:ditss.biz.id`;
+                    }
+                }
+            });
+            
+            // Efek parallax untuk matahari
+            document.addEventListener('mousemove', e => {
+                const moveX = (e.clientX / window.innerWidth - 0.5) * 10;
+                const moveY = (e.clientY / window.innerHeight - 0.5) * 10;
+                document.querySelector('.sun').style.transform = `translate(${moveX}px, ${moveY}px) scale(1.1)`;
+            });
+        });
+    </script>
+</body>
+</html>
